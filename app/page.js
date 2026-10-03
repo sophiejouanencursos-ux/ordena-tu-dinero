@@ -478,13 +478,13 @@ export default function Home() {
             </Field>
 
             <div className="result">
-              <span>Disponible actual</span>
+              <span>HOY TE QUEDA AL MES</span>
               <strong>{money(available)}</strong>
 
-              <span>Nuevo disponible</span>
+              <span>SI HACES ESTOS CAMBIOS, TE QUEDARÍA AL MES</span>
               <strong>{money(newAvailable)}</strong>
 
-              <span>Diferencia en 12 meses</span>
+              <span>DINERO ADICIONAL EN 12 MESES</span>
               <strong>{money((newAvailable - available) * 12)}</strong>
             </div>
           </div>
