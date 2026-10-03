@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import "./styles.css";
 
 const money = (n) =>
@@ -61,6 +61,38 @@ export default function Home() {
   const [cut, setCut] = useState("");
   const [more, setMore] = useState("");
   const [extraDebt, setExtraDebt] = useState("");
+
+  useEffect(() => {
+  const datosGuardados = localStorage.getItem("ordenaTuDinero");
+
+  if (datosGuardados) {
+    try {
+      const datos = JSON.parse(datosGuardados);
+
+      if (datos.income) setIncome(datos.income);
+      if (datos.expenses) setExpenses(datos.expenses);
+      if (datos.debts) setDebts(datos.debts);
+      if (datos.goals) setGoals(datos.goals);
+      if (datos.save !== undefined) setSave(datos.save);
+      if (datos.saved !== undefined) setSaved(datos.saved);
+    } catch (error) {
+      console.error("No se pudieron recuperar los datos guardados.");
+    }
+  }
+}, []);
+
+useEffect(() => {
+  const datos = {
+    income,
+    expenses,
+    debts,
+    goals,
+    save,
+    saved,
+  };
+
+  localStorage.setItem("ordenaTuDinero", JSON.stringify(datos));
+}, [income, expenses, debts, goals, save, saved]);
 
   const totalIncome = useMemo(
     () => Object.values(income).reduce((a, v) => a + num(v), 0),
