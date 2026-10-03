@@ -518,19 +518,25 @@ useEffect(() => {
     <strong>{money(Math.abs(available))}</strong>
   </div>
 
-  <div>
-    <span>CON LOS CAMBIOS</span>
-    <small>
-      {newAvailable >= 0 ? "Te quedarían al mes" : "Te faltarían al mes"}
-    </small>
-    <strong>{money(Math.abs(newAvailable))}</strong>
-  </div>
+  {(num(cut) > 0 || num(more) > 0 || num(extraDebt) > 0) && (
+  <>
+    <div>
+      <span>RESULTADO DE TU SIMULACIÓN</span>
+      <small>
+        {newAvailable >= 0
+          ? "Te quedarían al mes"
+          : "Te faltarían al mes"}
+      </small>
+      <strong>{money(Math.abs(newAvailable))}</strong>
+    </div>
 
-  <div>
-    <span>IMPACTO EN 12 MESES</span>
-    <small>Dinero adicional</small>
-    <strong>{money((newAvailable - available) * 12)}</strong>
-  </div>
+    <div>
+      <span>IMPACTO EN 12 MESES</span>
+      <small>Dinero adicional</small>
+      <strong>{money((newAvailable - available) * 12)}</strong>
+    </div>
+  </>
+)}
 </div>
           </div>
 
@@ -540,6 +546,57 @@ useEffect(() => {
           >
             GUARDAR / IMPRIMIR MI PLAN
           </button>
+                   <button
+  className="secondary"
+  onClick={() => {
+    const confirmar = window.confirm(
+      "¿Quieres empezar un nuevo plan? Se borrarán todos los datos guardados en este dispositivo."
+    );
+
+    if (confirmar) {
+      localStorage.removeItem("ordenaTuDinero");
+
+      setIncome({
+        salary: "",
+        business: "",
+        rent: "",
+        other: "",
+      });
+
+      setExpenses({
+        housing: "",
+        food: "",
+        services: "",
+        transport: "",
+        education: "",
+        health: "",
+        personal: "",
+        fun: "",
+        subscriptions: "",
+        other: "",
+      });
+
+      setDebts([
+        {
+          type: "Tarjeta de crédito",
+          name: "",
+          balance: "",
+          payment: "",
+        },
+      ]);
+
+      setGoals([]);
+      setSave("");
+      setSaved("");
+      setCut("");
+      setMore("");
+      setExtraDebt("");
+      setStep(0);
+    }
+  }}
+>
+  NUEVO PLAN / EMPEZAR DE CERO
+</button>
 
           <Nav step={step} setStep={setStep} />
         </Section>
