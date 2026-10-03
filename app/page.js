@@ -510,15 +510,28 @@ useEffect(() => {
             </Field>
 
             <div className="result">
-              <span>HOY TE QUEDA AL MES</span>
-              <strong>{money(available)}</strong>
+  <div>
+    <span>SITUACIÓN ACTUAL</span>
+    <small>
+      {available >= 0 ? "Te quedan al mes" : "Te faltan al mes"}
+    </small>
+    <strong>{money(Math.abs(available))}</strong>
+  </div>
 
-              <span>SI HACES ESTOS CAMBIOS, TE QUEDARÍA AL MES</span>
-              <strong>{money(newAvailable)}</strong>
+  <div>
+    <span>CON LOS CAMBIOS</span>
+    <small>
+      {newAvailable >= 0 ? "Te quedarían al mes" : "Te faltarían al mes"}
+    </small>
+    <strong>{money(Math.abs(newAvailable))}</strong>
+  </div>
 
-              <span>DINERO ADICIONAL EN 12 MESES</span>
-              <strong>{money((newAvailable - available) * 12)}</strong>
-            </div>
+  <div>
+    <span>IMPACTO EN 12 MESES</span>
+    <small>Dinero adicional</small>
+    <strong>{money((newAvailable - available) * 12)}</strong>
+  </div>
+</div>
           </div>
 
           <button
