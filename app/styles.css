@@ -27,3 +27,8 @@
   background: white;
   font-size: 16px;
 }
+.goal.selected {
+  background: #ffd21c;
+  border: 2px solid #171717;
+  font-weight: 800;
+}
