@@ -451,13 +451,7 @@ useEffect(() => {
             ))}
           </div>
 
-         {goals.includes("Pagar deudas") && goals.length === 1 ? (
-  <>
-    <Field label="¿Cuánto adicional quieres destinar a tus deudas al mes?">
-      <N value={save} onChange={setSave} />
-    </Field>
-  </>
-) : (
+        {goals.some((g) => g !== "Pagar deudas") && (
   <>
     <Field label="¿Cuánto quieres ahorrar al mes?">
       <N value={save} onChange={setSave} />
@@ -467,6 +461,12 @@ useEffect(() => {
       <N value={saved} onChange={setSaved} />
     </Field>
   </>
+)}
+
+{goals.includes("Pagar deudas") && (
+  <Field label="¿Cuánto adicional quieres destinar a tus deudas al mes?">
+    <N value={extraDebt} onChange={setExtraDebt} />
+  </Field>
 )}
 
           <Nav step={step} setStep={setStep} />
