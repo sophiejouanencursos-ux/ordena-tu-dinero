@@ -80,26 +80,104 @@ const hoy = new Date();
 
 const [month, setMonth] = useState(meses[hoy.getMonth()]);
 const [year, setYear] = useState(hoy.getFullYear());
-  useEffect(() => {
-  const datosGuardados = localStorage.getItem("ordenaTuDinero");
+ const [datosCargados, setDatosCargados] = useState(false);
+
+useEffect(() => {
+  setDatosCargados(false);
+
+  const clave = `ordenaTuDinero-${year}-${month}`;
+  const datosGuardados = localStorage.getItem(clave);
 
   if (datosGuardados) {
     try {
       const datos = JSON.parse(datosGuardados);
 
-      if (datos.income) setIncome(datos.income);
-      if (datos.expenses) setExpenses(datos.expenses);
-      if (datos.debts) setDebts(datos.debts);
-      if (datos.goals) setGoals(datos.goals);
-      if (datos.save !== undefined) setSave(datos.save);
-      if (datos.saved !== undefined) setSaved(datos.saved);
+      setIncome(
+        datos.income || {
+          salary: "",
+          business: "",
+          rent: "",
+          other: "",
+        }
+      );
+
+      setExpenses(
+        datos.expenses || {
+          housing: "",
+          food: "",
+          services: "",
+          transport: "",
+          education: "",
+          health: "",
+          personal: "",
+          fun: "",
+          subscriptions: "",
+          other: "",
+        }
+      );
+
+      setDebts(
+        datos.debts || [
+          {
+            type: "Tarjeta de crédito",
+            name: "",
+            balance: "",
+            payment: "",
+          },
+        ]
+      );
+
+      setGoals(datos.goals || []);
+      setSave(datos.save ?? "");
+      setSaved(datos.saved ?? "");
+      setExtraDebt(datos.extraDebt ?? "");
     } catch (error) {
       console.error("No se pudieron recuperar los datos guardados.");
     }
+  } else {
+    setIncome({
+      salary: "",
+      business: "",
+      rent: "",
+      other: "",
+    });
+
+    setExpenses({
+      housing: "",
+      food: "",
+      services: "",
+      transport: "",
+      education: "",
+      health: "",
+      personal: "",
+      fun: "",
+      subscriptions: "",
+      other: "",
+    });
+
+    setDebts([
+      {
+        type: "Tarjeta de crédito",
+        name: "",
+        balance: "",
+        payment: "",
+      },
+    ]);
+
+    setGoals([]);
+    setSave("");
+    setSaved("");
+    setExtraDebt("");
   }
-}, []);
+
+  setDatosCargados(true);
+}, [month, year]);
 
 useEffect(() => {
+  if (!datosCargados) return;
+
+  const clave = `ordenaTuDinero-${year}-${month}`;
+
   const datos = {
     income,
     expenses,
@@ -107,7 +185,22 @@ useEffect(() => {
     goals,
     save,
     saved,
+    extraDebt,
   };
+
+  localStorage.setItem(clave, JSON.stringify(datos));
+}, [
+  income,
+  expenses,
+  debts,
+  goals,
+  save,
+  saved,
+  extraDebt,
+  month,
+  year,
+  datosCargados,
+]);  };
 
   localStorage.setItem("ordenaTuDinero", JSON.stringify(datos));
 }, [income, expenses, debts, goals, save, saved]);
