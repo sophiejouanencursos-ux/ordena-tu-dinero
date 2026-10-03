@@ -61,7 +61,25 @@ export default function Home() {
   const [cut, setCut] = useState("");
   const [more, setMore] = useState("");
   const [extraDebt, setExtraDebt] = useState("");
+const meses = [
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Septiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre",
+];
 
+const hoy = new Date();
+
+const [month, setMonth] = useState(meses[hoy.getMonth()]);
+const [year, setYear] = useState(hoy.getFullYear());
   useEffect(() => {
   const datosGuardados = localStorage.getItem("ordenaTuDinero");
 
@@ -195,7 +213,27 @@ useEffect(() => {
               realmente te queda.
             </p>
 
-            <div className="tiles">
+            <div className="period-selector">
+  <label>¿QUÉ MES QUIERES ORGANIZAR?</label>
+
+  <div className="period-fields">
+    <select value={month} onChange={(e) => setMonth(e.target.value)}>
+      {meses.map((mes) => (
+        <option key={mes} value={mes}>
+          {mes}
+        </option>
+      ))}
+    </select>
+
+    <select value={year} onChange={(e) => setYear(Number(e.target.value))}>
+      {[2025, 2026, 2027, 2028, 2029, 2030].map((año) => (
+        <option key={año} value={año}>
+          {año}
+        </option>
+      ))}
+    </select>
+  </div>
+</div><div className="tiles">
               <span>Tus ingresos</span>
               <span>Tus gastos</span>
               <span>Tus deudas</span>
