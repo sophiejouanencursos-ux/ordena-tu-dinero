@@ -649,7 +649,11 @@ function MoneyBar({ label, value, amount }) {
 function Brand() {
   return (
     <header className="brand">
-      <b>EMPRENDIENDO CON ÉXITO</b>
+     <img
+  src="/LOGO SIN NOMBRE.JPG"
+  alt="Emprendiendo con Éxito"
+  className="brand-logo"
+/>
       <span>ORDENA TU DINERO</span>
     </header>
   );
