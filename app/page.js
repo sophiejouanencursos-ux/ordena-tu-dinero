@@ -676,57 +676,6 @@ useEffect(() => {
     </p>
   )}
 </div>
-          <div className="simulator">
-            <p className="eyebrow">SIMULADOR</p>
-            <h2>¿Qué pasa si...?</h2>
-
-            <Field label="Reduzco mis gastos en">
-              <N value={cut} onChange={setCut} />
-            </Field>
-
-            <Field label="Genero ingresos adicionales de">
-              <N value={more} onChange={setMore} />
-            </Field>
-
-            <Field label="Pago extra a mis deudas">
-              <N value={extraDebt} onChange={setExtraDebt} />
-            </Field>
-
-            <div className="result">
-  <div>
-    <span>SITUACIÓN ACTUAL</span>
-    <small>
-      {available >= 0 ? "Te quedan al mes" : "Te faltan al mes"}
-    </small>
-    <strong>{money(Math.abs(available))}</strong>
-  </div>
-
-{(num(cut) > 0 || num(more) > 0) && (
-  <>
-    <div>
-      <span>RESULTADO DE TU SIMULACIÓN</span>
-      <small>
-        {newAvailable >= 0
-          ? "Te quedarían al mes"
-          : "Te faltarían al mes"}
-      </small>
-      <strong>{money(Math.abs(newAvailable))}</strong>
-    </div>
-
-    <div>
-      <span>IMPACTO EN 12 MESES</span>
-      <small>Dinero adicional</small>
-      <strong>{money((newAvailable - available) * 12)}</strong>
-    </div>
-  </>
-)}
-</div>
-          </div>
-
-          <button
-            className="primary"
-            onClick={() => window.print()}
-          >
             GUARDAR / IMPRIMIR MI PLAN
           </button>
                    <button
