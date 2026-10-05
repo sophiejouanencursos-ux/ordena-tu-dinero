@@ -202,10 +202,9 @@ useEffect(() => {
   month,
   year,
   datosCargados,
-]);  };
+]);
 
-  localStorage.setItem("ordenaTuDinero", JSON.stringify(datos));
-}, [income, expenses, debts, goals, save, saved]);
+ 
 
   const totalIncome = useMemo(
     () => Object.values(income).reduce((a, v) => a + num(v), 0),
