@@ -542,7 +542,7 @@ useEffect(() => {
             ))}
           </div>
 
-        {goals.some((g) => g !== "Pagar deudas") && (
+       {goals.includes("Ahorrar") && (
   <>
     <Field label="¿Cuánto quieres ahorrar al mes?">
       <N value={save} onChange={setSave} />
