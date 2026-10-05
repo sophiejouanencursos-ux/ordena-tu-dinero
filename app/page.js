@@ -676,8 +676,13 @@ useEffect(() => {
     </p>
   )}
 </div>
-            GUARDAR / IMPRIMIR MI PLAN
-          </button>
+
+<button
+  className="primary"
+  onClick={() => window.print()}
+>
+  GUARDAR / IMPRIMIR MI PLAN
+</button>
                    <button
   className="secondary"
   onClick={() => {
