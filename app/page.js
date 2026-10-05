@@ -61,6 +61,8 @@ export default function Home() {
   const [cut, setCut] = useState("");
   const [more, setMore] = useState("");
   const [extraDebt, setExtraDebt] = useState("");
+  const [emergencyExpenses, setEmergencyExpenses] = useState("");
+const [emergencySaved, setEmergencySaved] = useState("");
 const meses = [
   "Enero",
   "Febrero",
