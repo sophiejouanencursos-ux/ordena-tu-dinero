@@ -560,7 +560,17 @@ useEffect(() => {
     <N value={extraDebt} onChange={setExtraDebt} />
   </Field>
 )}
+{goals.includes("Fondo de emergencia") && (
+  <>
+    <Field label="¿Cuánto gastas al mes en tus gastos esenciales?">
+      <N value={emergencyExpenses} onChange={setEmergencyExpenses} />
+    </Field>
 
+    <Field label="¿Cuánto tienes actualmente en tu fondo de emergencia?">
+      <N value={emergencySaved} onChange={setEmergencySaved} />
+    </Field>
+  </>
+)}
           <Nav step={step} setStep={setStep} />
         </Section>
       )}
