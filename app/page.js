@@ -526,14 +526,11 @@ useEffect(() => {
           intro="Elige qué quieres conseguir con tu dinero."
         >
           <div className="goalgrid">
-            {[
-              "Ahorrar",
-              "Pagar deudas",
-              "Fondo de emergencia",
-              "Comprar casa",
-              "Viajar",
-              "Invertir",
-            ].map((g) => (
+           {[
+  "Ahorrar",
+  "Pagar deudas",
+  "Fondo de emergencia",
+].map((g) => (
               <button
                 key={g}
                 className={goals.includes(g) ? "goal selected" : "goal"}
