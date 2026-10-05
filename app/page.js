@@ -133,6 +133,8 @@ useEffect(() => {
       setSave(datos.save ?? "");
       setSaved(datos.saved ?? "");
       setExtraDebt(datos.extraDebt ?? "");
+      setEmergencyExpenses(datos.emergencyExpenses ?? "");
+setEmergencySaved(datos.emergencySaved ?? "");
     } catch (error) {
       console.error("No se pudieron recuperar los datos guardados.");
     }
@@ -199,6 +201,8 @@ useEffect(() => {
   save,
   saved,
   extraDebt,
+  emergencyExpenses,
+emergencySaved,
   month,
   year,
   datosCargados,
