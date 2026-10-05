@@ -641,7 +641,41 @@ useEffect(() => {
               </p>
             )}
           </div>
+<div className="diagnosis">
+  <p className="eyebrow">TU PLAN DE METAS</p>
 
+  {goals.includes("Ahorrar") && (
+    <p>
+      <b>Ahorrar:</b> Si ahorras {money(save)} al mes, en 12 meses
+      podrías tener <b>{money(num(saved) + num(save) * 12)}</b>,
+      incluyendo lo que ya tienes ahorrado.
+    </p>
+  )}
+
+  {goals.includes("Pagar deudas") && (
+    <p>
+      <b>Pagar deudas:</b> Si destinas {money(extraDebt)} adicionales
+      al mes, en 12 meses habrás destinado{" "}
+      <b>{money(num(extraDebt) * 12)}</b> extra al pago de tus deudas.
+    </p>
+  )}
+
+  {goals.includes("Fondo de emergencia") && (
+    <p>
+      <b>Fondo de emergencia:</b> Tu fondo recomendado para 3 meses es de{" "}
+      <b>{money(num(emergencyExpenses) * 3)}</b>. Actualmente tienes{" "}
+      <b>{money(emergencySaved)}</b> y te faltan{" "}
+      <b>
+        {money(
+          Math.max(
+            0,
+            num(emergencyExpenses) * 3 - num(emergencySaved)
+          )
+        )}
+      </b>.
+    </p>
+  )}
+</div>
           <div className="simulator">
             <p className="eyebrow">SIMULADOR</p>
             <h2>¿Qué pasa si...?</h2>
@@ -667,7 +701,7 @@ useEffect(() => {
     <strong>{money(Math.abs(available))}</strong>
   </div>
 
-  {(num(cut) > 0 || num(more) > 0 || num(extraDebt) > 0) && (
+{(num(cut) > 0 || num(more) > 0) && (
   <>
     <div>
       <span>RESULTADO DE TU SIMULACIÓN</span>
