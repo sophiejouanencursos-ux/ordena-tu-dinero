@@ -660,8 +660,8 @@ useEffect(() => {
     </p>
   )}
 
-  {goals.includes("Fondo de emergencia") && (
-    <p>
+{goals.includes("Fondo de emergencia") && num(emergencyExpenses) > 0 && (
+  <p>
       <b>Fondo de emergencia:</b> Tu fondo recomendado para 3 meses es de{" "}
       <b>{money(num(emergencyExpenses) * 3)}</b>. Actualmente tienes{" "}
       <b>{money(emergencySaved)}</b> y te faltan{" "}
@@ -685,6 +685,7 @@ useEffect(() => {
 </button>
                    <button
   className="secondary"
+style={{ marginTop: "16px" }}
   onClick={() => {
     const confirmar = window.confirm(
       "¿Quieres empezar un nuevo plan? Se borrarán todos los datos guardados en este dispositivo."
